@@ -1,0 +1,6 @@
+auth:
+  jwt:
+    expirationDays: 1
+#    secret: ${JWT_SECRET}
+    secret: default
+    issuer: my-backend
