@@ -1,4 +1,4 @@
-package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.security;
+package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -13,14 +13,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.configurations.JwtConfigurationProperties;
 
 import java.io.IOException;
 import java.util.Collections;
 
 @Component
 @AllArgsConstructor
-class JwtAuthTokenFilter extends OncePerRequestFilter {
+public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
     private final JwtConfigurationProperties properties;
 
