@@ -1,6 +1,19 @@
 auth:
   jwt:
-    expirationDays: 1
+    expirationSeconds: 3600
 #    secret: ${JWT_SECRET}
     secret: default
     issuer: my-backend
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5533/postgres
+    username: user
+    password: pass123
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
