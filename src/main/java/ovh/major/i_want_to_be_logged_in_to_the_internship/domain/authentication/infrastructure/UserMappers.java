@@ -2,6 +2,7 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication
 
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.RegistrationResultDto;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserDto;
+import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserForEmailDto;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserRegisterRequestDto;
 
 class UserMappers {
@@ -28,5 +29,12 @@ class UserMappers {
                 .registered(true)
                 .build();
 
+    }
+
+    public static UserForEmailDto fromUserEntitytoUserForEmailDto(UserEntity savedResult) {
+        return UserForEmailDto.builder()
+                .username(savedResult.getUsername())
+                .email(savedResult.getEmail())
+                .build();
     }
 }
