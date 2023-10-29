@@ -1,6 +1,5 @@
 package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt;
 
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import lombok.AllArgsConstructor;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Component;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserDto;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserLoginRequestDto;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserResponseDto;
-
 
 import java.time.*;
 
