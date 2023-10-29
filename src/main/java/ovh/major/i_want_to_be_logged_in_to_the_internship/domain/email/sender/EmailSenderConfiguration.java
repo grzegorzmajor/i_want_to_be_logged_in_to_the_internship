@@ -14,17 +14,22 @@ class EmailSenderConfiguration {
 
     @Bean
     public JavaMailSender javaMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost(properties.host());
-        mailSender.setPort(properties.port());
-        mailSender.setUsername(properties.username());
-        mailSender.setPassword(properties.password());
+        JavaMailSenderImpl mailSender = getJavaMailSender();
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
 
+        return mailSender;
+    }
+
+    private JavaMailSenderImpl getJavaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost(properties.host());
+        mailSender.setPort(properties.port());
+        mailSender.setUsername(properties.username());
+        mailSender.setPassword(properties.password());
         return mailSender;
     }
 }
