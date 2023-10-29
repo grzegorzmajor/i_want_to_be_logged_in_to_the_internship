@@ -11,7 +11,7 @@ public class EmailSenderFacade {
     private final static String subject = "Email confirmation from The Internship Application.";
 
 
-    void sendConfirmationEmail(UserForEmailDto user) {
+    public void sendConfirmationEmail(UserForEmailDto user) {
         emailSenderService.sendEmail(
                 user.email(),
                 subject,
