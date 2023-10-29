@@ -1,9 +1,16 @@
 auth:
   jwt:
-    expirationSeconds: 3600
-#    secret: ${JWT_SECRET}
-    secret: default
-    issuer: my-backend
+    auth:
+      expirationSeconds: 3600
+#      secret: ${JWT_SECRET}
+      secret: default
+      issuer: my-backend
+
+    email:
+      expirationSeconds: 300
+      secret: default
+      issuer: email-sender
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5533/postgres
@@ -13,7 +20,14 @@ spring:
     hikari:
       connection-timeout: 20000
       maximum-pool-size: 5
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  mail:
+    host: localhost
+    port: 25
+    username: some_not_re@l_user
+    password: p@ssword
