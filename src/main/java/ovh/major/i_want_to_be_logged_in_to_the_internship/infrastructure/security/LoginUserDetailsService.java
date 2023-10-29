@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.LoginFacade;
+import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.AuthorizationFacade;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserDto;
 
 import java.util.Collections;
@@ -12,11 +12,11 @@ import java.util.Collections;
 @AllArgsConstructor
 class LoginUserDetailsService implements UserDetailsService {
 
-    private final LoginFacade loginFacade;
+    private final AuthorizationFacade authorizationFacade;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws BadCredentialsException {
-        UserDto userDto = loginFacade.findByUsername(username);
+        UserDto userDto = authorizationFacade.findByUsername(username);
         return getUser(userDto);
     }
 
