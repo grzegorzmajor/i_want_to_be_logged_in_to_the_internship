@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.LoginFacade;
+import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.AuthorizationFacade;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt.JwtAuthTokenFilter;
 
 @Configuration
@@ -35,7 +35,7 @@ class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(LoginFacade loginFacade) {
+    public UserDetailsService userDetailsService(AuthorizationFacade loginFacade) {
         return new LoginUserDetailsService(loginFacade);
     }
 
