@@ -3,14 +3,14 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.domain.email.sender;
 import lombok.Builder;
 
 @Builder(builderClassName = "Builder")
-class EmailContent {
+class EmailWithLinkContent {
 
     private String title;
     private String textBeforeLink;
     private String link;
     private String textAfterLink;
 
-    private EmailContent() {}
+    private EmailWithLinkContent() {}
 
     public String toString() {
         StringBuilder content = new StringBuilder();

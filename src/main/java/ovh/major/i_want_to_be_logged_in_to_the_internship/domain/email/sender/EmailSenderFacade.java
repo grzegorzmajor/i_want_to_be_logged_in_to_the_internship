@@ -15,12 +15,12 @@ public class EmailSenderFacade {
         emailSenderService.sendEmail(
                 user.email(),
                 subject,
-                getEmailContent(user.username())
+                getConfirmationEmailWithLinkContent(user.username())
         );
     }
 
-    private String getEmailContent(String username) {
-        return EmailContent.builder()
+    private String getConfirmationEmailWithLinkContent(String username) {
+        return EmailWithLinkContent.builder()
                 .title("Email confirmation!")
                 .textBeforeLink("Hi, " + username + "! You have registered in The Internship Application. If you registered," +
                         "you must confirm your email. Click on the link below or copy and paste it into your browser.")
