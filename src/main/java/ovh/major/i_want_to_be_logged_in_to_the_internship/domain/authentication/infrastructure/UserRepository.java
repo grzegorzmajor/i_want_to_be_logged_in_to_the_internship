@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
-    void saveUser(UserEntity user);
+    UserEntity saveUser(UserEntity user);
 
     @Query("SELECT user FROM UserEntity user WHERE user.username = :username")
     UserEntity findByUsername(String username);
