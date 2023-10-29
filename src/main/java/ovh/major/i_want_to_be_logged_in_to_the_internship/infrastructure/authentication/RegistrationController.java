@@ -24,10 +24,11 @@ class RegistrationController {
     public ResponseEntity<RegistrationResultDto> registerUser(@RequestBody UserRegisterRequestDto userRegisterRequestDto) {
         String encodedPassword = bCryptPasswordEncoder.encode(userRegisterRequestDto.password());
         RegistrationResultDto registrationResultDto = authorizationFacade.registerUser(
-                new UserRegisterRequestDto(
-                        userRegisterRequestDto.username(),
-                        encodedPassword,
-                        userRegisterRequestDto.email()));
+                UserRegisterRequestDto.builder()
+                        .username(userRegisterRequestDto.username())
+                        .password(encodedPassword)
+                        .email(userRegisterRequestDto.email())
+                        .build());
         return ResponseEntity.status(HttpStatus.CREATED).body(registrationResultDto);
 
     }
