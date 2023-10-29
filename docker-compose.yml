@@ -19,3 +19,12 @@ services:
 #    environment:
 #      PGADMIN_DEFAULT_EMAIL: e@e.com
 #      PGADMIN_DEFAULT_PASSWORD: admin
+  email:
+    image: grafana/smtprelay
+    environment:
+      - SMTP_LISTEN=:25
+      - SMTP_USERNAME=some_not_re@l_user
+      - SMTP_PASSWORD=p@ssword
+    ports:
+      - "25:25"
+    container_name: email
