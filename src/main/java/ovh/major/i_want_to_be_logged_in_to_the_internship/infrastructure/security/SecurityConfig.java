@@ -3,6 +3,7 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.securi
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -44,11 +45,12 @@ class SecurityConfig {
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity.authorizeHttpRequests(request -> request
                 .requestMatchers(
-                        "/login/**"
+                        "/login/**",
+                        "/register/**"
                 ).permitAll()
-//                .requestMatchers(HttpMethod.GET,
-//                        ""
-//                ).permitAll()
+                .requestMatchers(HttpMethod.GET,
+                        "/confirm/**"
+                ).permitAll()
                 .anyRequest().authenticated()
         );
         httpSecurity.headers(header -> header
