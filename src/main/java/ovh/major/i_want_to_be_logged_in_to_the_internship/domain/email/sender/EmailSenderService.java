@@ -14,7 +14,6 @@ class EmailSenderService {
     private final JavaMailSender javaMailSender;
 
     public void sendEmail(String to, String subject, String text) {
-        //Todo dopasuj jeszcze jesli będzie trzeba
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
 
@@ -25,7 +24,7 @@ class EmailSenderService {
 
             javaMailSender.send(mimeMessage);
         } catch (MessagingException e) {
-            e.printStackTrace();  //Todo Obsłuż błąd
+            e.printStackTrace();  //Todo pomyśl nad błędem email.
         }
     }
 }
