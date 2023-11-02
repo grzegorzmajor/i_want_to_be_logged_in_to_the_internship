@@ -37,7 +37,7 @@ interface UserRepository extends JpaRepository<UserEntity, Integer> {
     @Query("UPDATE UserEntity user SET user.emailAuthenticated = true WHERE user.username = :username")
     void emailAuthenticateByUsername(String username);
 
-    @Query("SELECT true FROM UserEntity user WHERE user.username = :username OR user.email = :email")
+    @Query("SELECT CASE WHEN COUNT(user) > 0 THEN true ELSE false END FROM UserEntity user WHERE user.username = :username OR user.email = :email")
     boolean existsUserEntityByUsernameOrEmail(String username, String email);
 
 }
