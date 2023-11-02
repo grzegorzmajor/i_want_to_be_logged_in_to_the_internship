@@ -1,15 +1,20 @@
 package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
-@Component
-record JwtConfigurationProperties(
-        @Value("auth.jwt.auth.secret")
-        String secret,
-        @Value("auth.jwt.auth.expirationSeconds")
-        long expirationSeconds,
-        @Value("auth.jwt.auth.issuer")
-        String issuer
-) {
+@Configuration
+@PropertySource("classpath:application.yml")
+@ConfigurationProperties(value = "auth.jwt.auth")
+@Getter
+@Setter
+@EnableConfigurationProperties(value = {JwtConfigurationProperties.class})
+class JwtConfigurationProperties {
+        String secret;
+        long expirationSeconds;
+        String issuer;
 }
