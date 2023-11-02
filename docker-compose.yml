@@ -17,3 +17,15 @@ services:
     restart: always
     ports:
       - "8888:8080"
+    environment:
+      JWT_AUTH_SECRET: alamakota
+      JWT_LOGIN_EXPIRATION_SEC: 3600
+      JWT_EMAIL_SECRET: alamapsa
+      JWT_EMAIL_EXPIRATION_SEC: 300
+      POSTGRES_URL: jdbc:postgresql://localdb:5432/postgres
+      POSTGRES_USER: user
+      POSTGRES_PASS: pass123
+      EMAIL_HOST: smtp.gmail.com
+      EMAIL_PORT: 587
+      EMAIL_USER: majorapps09@gmail.com
+      EMAIL_PASS: you need password

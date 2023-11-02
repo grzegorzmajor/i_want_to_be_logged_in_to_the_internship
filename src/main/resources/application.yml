@@ -1,21 +1,20 @@
 auth:
   jwt:
     auth:
-      expirationSeconds: 3600
-#      secret: ${JWT_SECRET}
-      secret: default
+      expirationSeconds: ${JWT_LOGIN_EXPIRATION_SEC}
+      secret: ${JWT_AUTH_SECRET}
       issuer: my-backend
 
     email:
-      expirationSeconds: 300
-      secret: default
+      expirationSeconds: ${JWT_EMAIL_EXPIRATION_SEC}
+      secret: ${JWT_EMAIL_SECRET}
       issuer: email-sender
 
 spring:
   datasource:
-    url: jdbc:postgresql://localdb:5432/postgres
-    username: user
-    password: pass123
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASS}
     driver-class-name: org.postgresql.Driver
     hikari:
       connection-timeout: 20000
@@ -23,14 +22,14 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
 
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: majorapps09@gmail.com
-    password: "otip yixm cfac ieyb"
+    host: ${EMAIL_HOST}
+    port: ${EMAIL_PORT}
+    username: ${EMAIL_USER}
+    password: ${EMAIL_PASS}
     properties:
       mail:
         smtp:
