@@ -3,7 +3,7 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication
 import lombok.Builder;
 
 @Builder
-public record UserResponseDto(
+public record TokenResponseDto(
         String token,
         String username
 ) {
