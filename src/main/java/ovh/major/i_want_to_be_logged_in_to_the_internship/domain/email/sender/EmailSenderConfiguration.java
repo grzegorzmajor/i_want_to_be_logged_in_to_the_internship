@@ -1,5 +1,7 @@
 package ovh.major.i_want_to_be_logged_in_to_the_internship.domain.email.sender;
 
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -8,6 +10,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import java.util.Properties;
 
 @Configuration
+@AllArgsConstructor
 class EmailSenderConfiguration {
 
     private EmailConfigurationProperties properties;
@@ -26,10 +29,10 @@ class EmailSenderConfiguration {
 
     private JavaMailSenderImpl getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost(properties.host());
-        mailSender.setPort(properties.port());
-        mailSender.setUsername(properties.username());
-        mailSender.setPassword(properties.password());
+        mailSender.setHost(properties.getHost());
+        mailSender.setPort(properties.getPort());
+        mailSender.setUsername(properties.getUsername());
+        mailSender.setPassword(properties.getPassword());
         return mailSender;
     }
 }
