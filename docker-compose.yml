@@ -5,26 +5,15 @@ services:
     container_name: localdb
     restart: always
     ports:
-      - "5533:5432"
+      - "5432:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass123
       POSTGRES_DB: postgres
-#  pgadmin:
-#    image: dpage/pgadmin4
-#    container_name: pgadmin4_container
-#    restart: always
-#    ports:
-#      - "8888:80"
-#    environment:
-#      PGADMIN_DEFAULT_EMAIL: e@e.com
-#      PGADMIN_DEFAULT_PASSWORD: admin
-  email:
-    image: grafana/smtprelay
-    environment:
-      - SMTP_LISTEN=:25
-      - SMTP_USERNAME=some_not_re@l_user
-      - SMTP_PASSWORD=p@ssword
+  app:
+    container_name: app
+    build: .
+#    image: i_want_to_be_logged_in_to_the_internship-app
+    restart: always
     ports:
-      - "25:25"
-    container_name: email
+      - "8888:8080"
