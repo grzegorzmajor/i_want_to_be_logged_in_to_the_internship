@@ -2,5 +2,5 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authen
 
 import org.springframework.http.HttpStatus;
 
-record TokenErrorResponse(String message, HttpStatus status) {
+record ErrorResponse(String message, HttpStatus status) {
 }
