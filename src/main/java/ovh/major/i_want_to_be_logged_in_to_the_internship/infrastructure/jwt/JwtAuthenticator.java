@@ -2,19 +2,18 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import lombok.AllArgsConstructor;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
-import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserDto;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserLoginRequestDto;
-import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserResponseDto;
+import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.TokenResponseDto;
 
 import java.time.*;
 
-@AllArgsConstructor
 @Component
 public class JwtAuthenticator {
 
@@ -22,26 +21,36 @@ public class JwtAuthenticator {
     private final Clock clock;
     private final JwtConfigurationProperties properties;
 
-    public UserResponseDto authenticateAndGenerateToken(UserLoginRequestDto userLoginRequestDto) {
+    public JwtAuthenticator(
+            AuthenticationManager authenticationManager,
+            Clock clock,
+            @Qualifier("auth.jwt.auth-ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt.JwtConfigurationProperties")
+            JwtConfigurationProperties properties) {
+        this.authenticationManager = authenticationManager;
+        this.clock = clock;
+        this.properties = properties;
+    }
+
+    public TokenResponseDto authenticateAndGenerateToken(UserLoginRequestDto userLoginRequestDto) {
         Authentication authenticate = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userLoginRequestDto.username(), userLoginRequestDto.password()));
-        UserDto user = (UserDto) authenticate.getPrincipal();
+        User user = (User) authenticate.getPrincipal();
         String token = createToken(user);
-        String name = user.username();
-        return UserResponseDto.builder()
+        String name = user.getUsername();
+        return TokenResponseDto.builder()
                 .token(token)
                 .username(name)
                 .build();
     }
 
-    private String createToken(UserDto user) {
-        String secretKey = properties.secret();
+    private String createToken(User user) {
+        String secretKey = properties.getSecret();
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
         Instant now = LocalDateTime.now(clock).toInstant(ZoneOffset.UTC);
-        Instant expiresAt = now.plus(Duration.ofSeconds(properties.expirationSeconds()));
-        String issuer = properties.issuer();
+        Instant expiresAt = now.plus(Duration.ofSeconds(properties.getExpirationSeconds()));
+        String issuer = properties.getIssuer();
         return JWT.create()
-                .withSubject(user.username())
+                .withSubject(user.getUsername())
                 .withIssuedAt(now)
                 .withExpiresAt(expiresAt)
                 .withIssuer(issuer)
