@@ -27,5 +27,6 @@ services:
       POSTGRES_PASS: pass123
       EMAIL_HOST: smtp.gmail.com
       EMAIL_PORT: 587
-      EMAIL_USER: majorapps09@gmail.com
-      EMAIL_PASS: you need password
+      EMAIL_USER: your_email@gmail.com
+      #in google account your must enabling two-step login and generate application password
+      EMAIL_PASS: your own pass
