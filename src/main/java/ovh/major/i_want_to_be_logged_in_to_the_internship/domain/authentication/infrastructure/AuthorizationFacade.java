@@ -13,10 +13,11 @@ public class AuthorizationFacade {
     //todo please implement me
 
     LoginService loginService;
+    EmailConfirmationService emailConfirmationService;
     RegistrationService registrationService;
 
-    public void emailConfirmation(String username) {
-        loginService.emailConfirmation(username);
+    public void confirmEmail(String username) {
+        emailConfirmationService.confirm(username);
     }
 
     public UserDto findByUsername(String username) {
