@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
-    UserEntity saveUser(UserEntity user);
+    @Modifying
+    UserEntity save(UserEntity userEntity);
 
     @Query("SELECT user FROM UserEntity user WHERE user.username = :username")
     UserEntity findByUsername(String username);
@@ -25,15 +26,18 @@ interface UserRepository extends JpaRepository<UserEntity, Integer> {
     void updateUsernameById(Integer id, String username);
 
     @Modifying
-    @Query("UPDATE UserEntity user SET user.email = :email, user.emailAuthenticated = false WHERE user.id = :id")
+    @Query("UPDATE UserEntity user SET user.email = :email, user.emailAuthenticated = false WHERE user.username = :username")
     void updateEmailByUsername(String username, String email);
 
     @Modifying
-    @Query("UPDATE UserEntity user SET user.password = :password WHERE user.id = :id")
+    @Query("UPDATE UserEntity user SET user.password = :password WHERE user.username = :username")
     void updatePasswordByUsername(String username, String password);
 
     @Modifying
     @Query("UPDATE UserEntity user SET user.emailAuthenticated = true WHERE user.username = :username")
     void emailAuthenticateByUsername(String username);
+
+    @Query("SELECT true FROM UserEntity user WHERE user.username = :username OR user.email = :email")
+    boolean existsUserEntityByUsernameOrEmail(String username, String email);
 
 }
