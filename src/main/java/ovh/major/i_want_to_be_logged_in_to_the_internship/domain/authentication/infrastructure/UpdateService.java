@@ -18,7 +18,7 @@ class UpdateService {
 
     void updateUsernameByOldUsername(String oldUsername, String newUsername) {
         throwWhenUsernameExistInDb(oldUsername);
-        if (!repository.existsUserEntityByUsername(newUsername)) {
+        if (repository.existsUserEntityByUsername(newUsername)) {
             throw new DuplicateCredentialsException();
         }
         UserEntity updateResult = repository.updateUsernameByUsername(oldUsername, newUsername);
@@ -28,7 +28,7 @@ class UpdateService {
 
     void updateEmailByUsername(String username, String newEmail) {
         throwWhenUsernameExistInDb(username);
-        if (!repository.existsUserEntityByEmail(newEmail)) {
+        if (repository.existsUserEntityByEmail(newEmail)) {
             throw new DuplicateCredentialsException();
         }
         UserEntity updateResult = repository.updateEmailByUsername(username,newEmail);
