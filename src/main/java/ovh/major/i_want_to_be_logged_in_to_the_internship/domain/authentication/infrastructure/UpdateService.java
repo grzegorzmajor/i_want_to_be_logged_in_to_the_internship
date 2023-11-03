@@ -13,6 +13,10 @@ import static ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authenti
 @AllArgsConstructor
 class UpdateService {
 
+    //TODO wyłuskać oldUserName z tokena, lub sprawdzać czy jest takie same jak w tokenie.
+    // User nie może zmieniać innych uzerów.
+
+
     UserRepository repository;
     EmailSenderFacade emailSenderFacade;
 
@@ -21,7 +25,8 @@ class UpdateService {
         if (repository.existsUserEntityByUsername(newUsername)) {
             throw new DuplicateCredentialsException();
         }
-        UserEntity updateResult = repository.updateUsernameByUsername(oldUsername, newUsername);
+        repository.updateUsernameByUsername(oldUsername, newUsername);
+        UserEntity updateResult = repository.findByUsername(newUsername);
         UserForEmailDto userForEmailDto = UserMappers.fromUserEntitytoUserForEmailDto(updateResult);
         emailSenderFacade.sendSecurityInformationEmail(userForEmailDto, "Your username has bean changed!");
     }
@@ -31,14 +36,16 @@ class UpdateService {
         if (repository.existsUserEntityByEmail(newEmail)) {
             throw new DuplicateCredentialsException();
         }
-        UserEntity updateResult = repository.updateEmailByUsername(username,newEmail);
+        repository.updateEmailByUsername(username,newEmail);
+        UserEntity updateResult = repository.findByUsername(username);
         UserForEmailDto userForEmailDto = UserMappers.fromUserEntitytoUserForEmailDto(updateResult);
         emailSenderFacade.sendConfirmationEmail(userForEmailDto);
     }
 
     void updatePasswordByUsername(String username, String password) {
         throwWhenUsernameExistInDb(username);
-        UserEntity updateResult = repository.updatePasswordByUsername(username,password);
+        repository.updatePasswordByUsername(username,password);
+        UserEntity updateResult = repository.findByUsername(username);
         UserForEmailDto userForEmailDto = UserMappers.fromUserEntitytoUserForEmailDto(updateResult);
         emailSenderFacade.sendSecurityInformationEmail(userForEmailDto, "Your password has bean changed!");
     }
