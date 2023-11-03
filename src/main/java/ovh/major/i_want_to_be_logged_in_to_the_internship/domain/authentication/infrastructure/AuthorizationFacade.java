@@ -15,6 +15,7 @@ public class AuthorizationFacade {
     EmailConfirmationService emailConfirmationService;
     RegistrationService registrationService;
     DeleteService deleteService;
+    UpdateService updateService;
 
     public void confirmEmail(String username) {
         emailConfirmationService.confirm(username);
@@ -31,5 +32,18 @@ public class AuthorizationFacade {
     @Transactional
     public void deleteUser(String username) {
         deleteService.deleteByUsername(username);
+    }
+
+    @Transactional
+    public void updateUsernameByOldUsername(String oldUsername, String newUsername) {
+        updateService.updateUsernameByOldUsername(oldUsername,newUsername);
+    }
+    @Transactional
+    public void updateEmailByUsername(String username, String newEmail) {
+        updateService.updateEmailByUsername(username,newEmail);
+    }
+    @Transactional
+    public void updatePasswordByUsername(String username, String password) {
+        updateService.updatePasswordByUsername(username, password);
     }
 }
