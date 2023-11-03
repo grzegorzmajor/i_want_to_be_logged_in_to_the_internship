@@ -13,6 +13,7 @@ public class EmailSenderFacade {
     JwtForEmailTokenProvider tokenProvider;
 
     private final static String EMAIL_CONFIRMATION_SUBJECT = "Email confirmation from The Internship Application.";
+    private final static String EMAIL_SECURITY_INFORMATION_SUBJECT = "Security information from The Internship Application.";
     private final static String APPLICATION_LINK = "http://localhost:8888/";
 
 
@@ -24,15 +25,52 @@ public class EmailSenderFacade {
         );
     }
 
+    public void sendSecurityInformationEmail(UserForEmailDto user, String message) {
+        emailSenderService.sendEmail(
+                user.email(),
+                EMAIL_SECURITY_INFORMATION_SUBJECT,
+                getSecurityEmailContent(user.username(),message)
+        );
+    }
+
     private String getConfirmationEmailContentWithLink(String username) {
+        return getEmailWithLink(
+                "Email confirmation!",
+                "You have registered in The Internship Application. If you registered," +
+                        "you must confirm your email. Click on the link below or copy and paste it into your browser.",
+                APPLICATION_LINK + "confirm/" + tokenProvider.generateToken(username),
+                "The link will expire after 5 minutes!",
+                username);
+    }
+    private String getSecurityEmailContent(String username, String message) {
+        return getEmailWithoutLink(
+                "Security message!",
+                message,
+                username);
+    }
+
+    private String getEmailWithLink(String tittle,
+                                    String textBefore,
+                                    String link,
+                                    String textAfter,
+                                    String username) {
         return EmailWithLinkContent.builder()
-                .title("Email confirmation!")
-                .textBeforeLink("Hi, " + username + "! You have registered in The Internship Application. If you registered," +
-                        "you must confirm your email. Click on the link below or copy and paste it into your browser.")
-                .link(APPLICATION_LINK + "confirm/" + tokenProvider.generateToken(username))
-                .textAfterLink("The link will expire after 5 minutes!")
+                .title(tittle)
+                .textBeforeLink("Hi, " + username + "! " + textBefore)
+                .link(link)
+                .textAfterLink(textAfter)
                 .build()
                 .toString();
     }
+    private String getEmailWithoutLink(String tittle,
+                                    String text,
+                                    String username) {
+        return EmailWithoutLinkContent.builder()
+                .title(tittle)
+                .text("Hi, " + username + "! " + text)
+                .build()
+                .toString();
+    }
+
 
 }
