@@ -9,6 +9,9 @@ import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.
 @AllArgsConstructor
 class DeleteService {
 
+    //TODO wyłuskać oldUserName z tokena, lub sprawdzać czy jest takie same jak w tokenie.
+    // User nie może kasować innych uzerów.
+
     UserRepository repository;
 
     void deleteByUsername(String username){
