@@ -13,10 +13,6 @@ import static ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authenti
 @AllArgsConstructor
 class UpdateService {
 
-    //TODO wyłuskać oldUserName z tokena, lub sprawdzać czy jest takie same jak w tokenie.
-    // User nie może zmieniać innych uzerów.
-
-
     UserRepository repository;
     EmailSenderFacade emailSenderFacade;
 
