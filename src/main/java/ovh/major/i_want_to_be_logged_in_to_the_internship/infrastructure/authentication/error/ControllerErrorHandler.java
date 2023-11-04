@@ -11,6 +11,7 @@ import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.exceptions.EmailNotConfirmedException;
 
 import static ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.exceptions.ExceptionMessages.*;
+import static ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authentication.error.ExceptionMessages.NO_PERMISSION;
 
 
 @ControllerAdvice
@@ -41,5 +42,12 @@ class ControllerErrorHandler {
     @ResponseBody
     public ErrorResponse handleUsernameNotFound() {
         return new ErrorResponse(USER_NOT_FOUND.toString(), HttpStatus.NOT_FOUND);
+    }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(NoPermissionException.class)
+    @ResponseBody
+    public ErrorResponse handleNoPermissionException() {
+        return new ErrorResponse(NO_PERMISSION.toString(), HttpStatus.FORBIDDEN);
     }
 }
