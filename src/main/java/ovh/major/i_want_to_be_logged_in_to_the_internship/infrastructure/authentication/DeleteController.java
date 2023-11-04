@@ -2,11 +2,10 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authen
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.AuthorizationFacade;
+import ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authentication.error.NoPermissionException;
+import ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt.JwtAuthTokenFilter;
 
 @RestController
 @AllArgsConstructor
@@ -14,9 +13,13 @@ import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.
 class DeleteController {
 
     private final AuthorizationFacade authorizationFacade;
+    private final JwtAuthTokenFilter jwtAuthTokenFilter;
 
     @DeleteMapping("/{username}")
-    public void deleteUser(@PathVariable("username") String username) {
+    public void deleteUser(@PathVariable("username") String username, @RequestHeader("Authorization") String token) {
+        if (!jwtAuthTokenFilter.isContainUsername(token,username)) {
+            throw new NoPermissionException();
+        }
         authorizationFacade.deleteUser(username);
     }
 
