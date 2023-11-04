@@ -48,4 +48,14 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
         DecodedJWT jwt = verifier.verify(token.substring(7));
         return new UsernamePasswordAuthenticationToken(jwt.getSubject(), null, Collections.emptyList());
     }
+
+    public boolean isContainUsername(String token, String username) {
+        String secretKey = properties.getSecret();
+        Algorithm algorithm = Algorithm.HMAC256(secretKey);
+        JWTVerifier verifier = JWT.require(algorithm)
+                .build();
+        DecodedJWT jwt = verifier.verify(token.substring(7));
+        String extractedFromToken = jwt.getSubject();
+        return extractedFromToken.contains(username);
+    }
 }
