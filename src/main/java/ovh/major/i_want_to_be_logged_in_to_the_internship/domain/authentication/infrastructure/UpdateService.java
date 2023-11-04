@@ -17,7 +17,7 @@ class UpdateService {
     EmailSenderFacade emailSenderFacade;
 
     void updateUsernameByOldUsername(String oldUsername, String newUsername) {
-        throwWhenUsernameExistInDb(oldUsername);
+        throwWhenUsernameNoExistInDb(oldUsername);
         if (repository.existsUserEntityByUsername(newUsername)) {
             throw new DuplicateCredentialsException();
         }
@@ -28,7 +28,7 @@ class UpdateService {
     }
 
     void updateEmailByUsername(String username, String newEmail) {
-        throwWhenUsernameExistInDb(username);
+        throwWhenUsernameNoExistInDb(username);
         if (repository.existsUserEntityByEmail(newEmail)) {
             throw new DuplicateCredentialsException();
         }
@@ -39,14 +39,14 @@ class UpdateService {
     }
 
     void updatePasswordByUsername(String username, String password) {
-        throwWhenUsernameExistInDb(username);
+        throwWhenUsernameNoExistInDb(username);
         repository.updatePasswordByUsername(username,password);
         UserEntity updateResult = repository.findByUsername(username);
         UserForEmailDto userForEmailDto = UserMappers.fromUserEntitytoUserForEmailDto(updateResult);
         emailSenderFacade.sendSecurityInformationEmail(userForEmailDto, "Your password has bean changed!");
     }
 
-    private void throwWhenUsernameExistInDb(String oldUsername) {
+    private void throwWhenUsernameNoExistInDb(String oldUsername) {
         if (!repository.existsUserEntityByUsername(oldUsername)) {
             throw new UsernameNotFoundException(USER_NOT_FOUND.toString());
         }
