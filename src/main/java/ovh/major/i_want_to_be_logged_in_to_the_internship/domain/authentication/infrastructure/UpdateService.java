@@ -23,7 +23,7 @@ class UpdateService {
         }
         repository.updateUsernameByUsername(oldUsername, newUsername);
         UserEntity updateResult = repository.findByUsername(newUsername);
-        UserForEmailDto userForEmailDto = UserMappers.fromUserEntitytoUserForEmailDto(updateResult);
+        UserForEmailDto userForEmailDto = UserMappers.fromUserEntityToUserForEmailDto(updateResult);
         emailSenderFacade.sendSecurityInformationEmail(userForEmailDto, "Your username has bean changed!");
     }
 
@@ -34,7 +34,7 @@ class UpdateService {
         }
         repository.updateEmailByUsername(username,newEmail);
         UserEntity updateResult = repository.findByUsername(username);
-        UserForEmailDto userForEmailDto = UserMappers.fromUserEntitytoUserForEmailDto(updateResult);
+        UserForEmailDto userForEmailDto = UserMappers.fromUserEntityToUserForEmailDto(updateResult);
         emailSenderFacade.sendConfirmationEmail(userForEmailDto);
     }
 
@@ -42,7 +42,7 @@ class UpdateService {
         throwWhenUsernameNoExistInDb(username);
         repository.updatePasswordByUsername(username,password);
         UserEntity updateResult = repository.findByUsername(username);
-        UserForEmailDto userForEmailDto = UserMappers.fromUserEntitytoUserForEmailDto(updateResult);
+        UserForEmailDto userForEmailDto = UserMappers.fromUserEntityToUserForEmailDto(updateResult);
         emailSenderFacade.sendSecurityInformationEmail(userForEmailDto, "Your password has bean changed!");
     }
 

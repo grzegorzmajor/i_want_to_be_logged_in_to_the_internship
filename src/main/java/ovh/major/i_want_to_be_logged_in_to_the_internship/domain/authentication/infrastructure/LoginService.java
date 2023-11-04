@@ -25,6 +25,6 @@ class LoginService {
         if (!userEntity.isEmailAuthenticated()) {
             throw new EmailNotConfirmedException();
         }
-        return UserMappers.fromUserEntitytoUserDto(userEntity);
+        return UserMappers.fromUserEntityToUserDto(userEntity);
     }
 }

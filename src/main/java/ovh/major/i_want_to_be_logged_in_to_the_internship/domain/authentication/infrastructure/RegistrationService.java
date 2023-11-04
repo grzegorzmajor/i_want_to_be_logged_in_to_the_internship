@@ -23,7 +23,7 @@ class RegistrationService {
             throw new DuplicateCredentialsException();
         };
         UserEntity savedResult = userRepository.save(userEntity);
-        UserForEmailDto userForEmailDto = UserMappers.fromUserEntitytoUserForEmailDto(savedResult);
+        UserForEmailDto userForEmailDto = UserMappers.fromUserEntityToUserForEmailDto(savedResult);
         emailSenderFacade.sendConfirmationEmail(userForEmailDto);
         return UserMappers.fromUserEntityToRegistrationResultDto(savedResult);
     }

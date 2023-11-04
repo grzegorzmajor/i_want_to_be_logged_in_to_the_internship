@@ -6,7 +6,7 @@ import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserRegisterRequestDto;
 
 class UserMappers {
-    public static UserDto fromUserEntitytoUserDto(UserEntity userEntity) {
+    public static UserDto fromUserEntityToUserDto(UserEntity userEntity) {
         return UserDto.builder()
                 .username(userEntity.getUsername())
                 .password(userEntity.getPassword())
@@ -31,7 +31,7 @@ class UserMappers {
 
     }
 
-    public static UserForEmailDto fromUserEntitytoUserForEmailDto(UserEntity savedResult) {
+    public static UserForEmailDto fromUserEntityToUserForEmailDto(UserEntity savedResult) {
         return UserForEmailDto.builder()
                 .username(savedResult.getUsername())
                 .email(savedResult.getEmail())
