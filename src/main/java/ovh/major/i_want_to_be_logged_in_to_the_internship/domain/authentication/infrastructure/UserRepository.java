@@ -23,15 +23,15 @@ interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     @Modifying
     @Query("UPDATE UserEntity user SET user.username = :newUsername WHERE user.username = :oldUsername")
-    Integer updateUsernameByUsername(String oldUsername, String newUsername);
+    void updateUsernameByUsername(String oldUsername, String newUsername);
 
     @Modifying
     @Query("UPDATE UserEntity user SET user.email = :email, user.emailAuthenticated = false WHERE user.username = :username")
-    Integer updateEmailByUsername(String username, String email);
+    void updateEmailByUsername(String username, String email);
 
     @Modifying
     @Query("UPDATE UserEntity user SET user.password = :password WHERE user.username = :username")
-    Integer updatePasswordByUsername(String username, String password);
+    void updatePasswordByUsername(String username, String password);
 
     @Modifying
     @Query("UPDATE UserEntity user SET user.emailAuthenticated = true WHERE user.username = :username")

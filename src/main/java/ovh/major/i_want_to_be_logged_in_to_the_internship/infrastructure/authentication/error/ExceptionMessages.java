@@ -3,7 +3,7 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authen
 public enum ExceptionMessages {
     NO_PERMISSION("");
 
-    private String s;
+    private final String s;
 
     ExceptionMessages(String s) {
         this.s = s;
