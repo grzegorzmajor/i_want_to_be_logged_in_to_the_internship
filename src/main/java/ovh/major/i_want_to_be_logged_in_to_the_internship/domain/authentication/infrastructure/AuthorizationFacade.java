@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.RegistrationResultDto;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserDto;
+import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserForEmailDto;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserRegisterRequestDto;
 
 @Component
@@ -22,7 +23,7 @@ public class AuthorizationFacade {
     }
 
     public UserDto findByUsername(String username) {
-        return loginService.findByUsername(username);
+        return UserMappers.fromUserEntityToUserDto(loginService.findByUsername(username));
     }
 
     public RegistrationResultDto registerUser(UserRegisterRequestDto userRegisterRequestDto) {
@@ -45,5 +46,15 @@ public class AuthorizationFacade {
     @Transactional
     public void updatePasswordByUsername(String username, String password) {
         updateService.updatePasswordByUsername(username, password);
+    }
+
+    public Integer findUserIdByUsername(String username) {
+        UserEntity user = loginService.findByUsername(username);
+        return user.getId();
+    }
+
+    public UserForEmailDto findUserById(Integer id) {
+        UserEntity user = loginService.findById(id);
+        return UserMappers.fromUserEntityToUserForEmailDto(user);
     }
 }
