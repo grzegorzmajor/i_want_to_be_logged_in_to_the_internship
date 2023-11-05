@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
 @Repository
 interface UserRepository extends JpaRepository<UserEntity, Integer> {
@@ -12,14 +13,14 @@ interface UserRepository extends JpaRepository<UserEntity, Integer> {
     UserEntity save(UserEntity userEntity);
 
     @Query("SELECT user FROM UserEntity user WHERE user.username = :username")
-    UserEntity findByUsername(String username);
+    Optional<UserEntity> findByUsername(String username);
+
+    @Query("SELECT user FROM UserEntity user WHERE user.id = :id")
+    Optional<UserEntity> findById(Integer id);
 
     @Modifying
     @Query("DELETE FROM UserEntity user WHERE user.username = :username")
     void deleteUserByUsername(String username);
-
-    @Query("SELECT user.id FROM UserEntity user WHERE user.username = :username")
-    Integer findUserIdByUsername(String username);
 
     @Modifying
     @Query("UPDATE UserEntity user SET user.username = :newUsername WHERE user.username = :oldUsername")
