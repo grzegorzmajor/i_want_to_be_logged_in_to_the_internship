@@ -1,6 +1,6 @@
 package ovh.major.i_want_to_be_logged_in_to_the_internship.domain.email.template;
 
-public class EmailTemplateFacade {
+public class EmailComposerFacade {
 
     public static Email confirmationEmail(String link, String username){
         return Email.builder()
