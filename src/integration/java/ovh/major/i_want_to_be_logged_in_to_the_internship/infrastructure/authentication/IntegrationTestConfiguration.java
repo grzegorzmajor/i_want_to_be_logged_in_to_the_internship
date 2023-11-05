@@ -8,12 +8,14 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.IWantToBeLoggedInToTheInternshipApplication;
 
 import static io.restassured.config.EncoderConfig.encoderConfig;
 
-
-@SpringBootTest(classes = IWantToBeLoggedInToTheInternshipApplication.class)
+@SpringBootTest(classes = IWantToBeLoggedInToTheInternshipApplication.class,
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Testcontainers
 public class IntegrationTestConfiguration {
 
     private static final Integer PORT_SMTP = 1025;

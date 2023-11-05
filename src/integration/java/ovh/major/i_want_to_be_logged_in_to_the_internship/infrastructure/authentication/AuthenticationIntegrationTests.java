@@ -3,15 +3,12 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authen
 import io.restassured.http.ContentType;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.*;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Testcontainers
 public class AuthenticationIntegrationTests extends IntegrationTestConfiguration {
 
     private static String confirmationLink;
