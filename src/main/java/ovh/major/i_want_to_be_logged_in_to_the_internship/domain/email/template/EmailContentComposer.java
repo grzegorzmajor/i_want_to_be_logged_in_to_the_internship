@@ -1,19 +1,23 @@
 package ovh.major.i_want_to_be_logged_in_to_the_internship.domain.email.template;
 
-class EmailContentTemplate {
+class EmailContentComposer {
 
     public static String emailWithLink(String title, String textBefore, String link, String textAfter) {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(headerStart());
         stringBuilder.append(title(title));
         stringBuilder.append(textLine(textBefore));
         stringBuilder.append(link(link));
         stringBuilder.append(textLine(textAfter));
+        stringBuilder.append(headerEnd());
         return stringBuilder.toString();
     }
     public static String email(String title, String text) {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(headerStart());
         stringBuilder.append(title(title));
         stringBuilder.append(textLine(text));
+        stringBuilder.append(headerEnd());
         return stringBuilder.toString();
     }
 
