@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.*;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class AuthenticationIntegrationTests extends IntegrationTestConfiguration {
+class AuthenticationIntegrationTests extends IntegrationTestConfiguration {
 
     private static String confirmationLink;
     protected static String token;
