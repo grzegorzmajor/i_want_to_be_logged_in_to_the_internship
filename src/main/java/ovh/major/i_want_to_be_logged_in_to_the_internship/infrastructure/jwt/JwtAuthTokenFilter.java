@@ -23,7 +23,7 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
     private final JwtConfigurationProperties properties;
 
     public JwtAuthTokenFilter(
-            @Qualifier("auth.jwt.auth-ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt.JwtConfigurationProperties")
+            @Qualifier("jwt.auth-ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt.JwtConfigurationProperties")
             JwtConfigurationProperties properties) {
         this.properties = properties;
     }

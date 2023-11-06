@@ -24,7 +24,7 @@ public class JwtAuthenticator {
     public JwtAuthenticator(
             AuthenticationManager authenticationManager,
             Clock clock,
-            @Qualifier("auth.jwt.auth-ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt.JwtConfigurationProperties")
+            @Qualifier("jwt.auth-ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt.JwtConfigurationProperties")
             JwtConfigurationProperties properties) {
         this.authenticationManager = authenticationManager;
         this.clock = clock;

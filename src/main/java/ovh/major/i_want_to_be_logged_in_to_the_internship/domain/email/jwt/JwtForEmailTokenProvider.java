@@ -12,7 +12,7 @@ import java.time.*;
 @Component
 public class JwtForEmailTokenProvider {
     public JwtForEmailTokenProvider(
-            @Qualifier("auth.jwt.email-ovh.major.i_want_to_be_logged_in_to_the_internship.domain.email.jwt.JwtForEmailConfigurationProperties")
+            @Qualifier("jwt.email-ovh.major.i_want_to_be_logged_in_to_the_internship.domain.email.jwt.JwtForEmailConfigurationProperties")
             JwtForEmailConfigurationProperties properties,
             Clock clock) {
         this.properties = properties;

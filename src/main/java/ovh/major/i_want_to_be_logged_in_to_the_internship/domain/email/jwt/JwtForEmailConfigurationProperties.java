@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @PropertySource("classpath:application.yml")
-@ConfigurationProperties(value = "auth.jwt.email")
+@ConfigurationProperties(value = "jwt.email")
 @Getter
 @Setter
 @EnableConfigurationProperties(value = {JwtForEmailConfigurationProperties.class})

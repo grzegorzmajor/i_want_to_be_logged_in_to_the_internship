@@ -52,10 +52,10 @@ class IntegrationTestConfiguration {
         System.setProperty("spring.mail.pass","s3cr3t");
 
         ///other properties
-        System.setProperty("auth.jwt.auth.expirationSeconds","200");
-        System.setProperty("auth.jwt.auth.secret","secret");
-        System.setProperty("auth.jwt.email.expirationSeconds","200");
-        System.setProperty("auth.jwt.email.secret","secret");
+        System.setProperty("jwt.auth.expirationSeconds","200");
+        System.setProperty("jwt.auth.secret","secret");
+        System.setProperty("jwt.email.expirationSeconds","200");
+        System.setProperty("jwt.email.secret","secret");
 
     }
     String mailhogHost() {

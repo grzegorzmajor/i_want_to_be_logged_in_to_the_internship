@@ -1,14 +1,13 @@
-auth:
-  jwt:
-    auth:
-      expirationSeconds: ${JWT_LOGIN_EXPIRATION_SEC}
-      secret: ${JWT_AUTH_SECRET}
-      issuer: my-backend
+jwt:
+  auth:
+    expirationSeconds: ${JWT_LOGIN_EXPIRATION_SEC}
+    secret: ${JWT_AUTH_SECRET}
+    issuer: my-backend
 
-    email:
-      expirationSeconds: ${JWT_EMAIL_EXPIRATION_SEC}
-      secret: ${JWT_EMAIL_SECRET}
-      issuer: email-sender
+  email:
+    expirationSeconds: ${JWT_EMAIL_EXPIRATION_SEC}
+    secret: ${JWT_EMAIL_SECRET}
+    issuer: email-sender
 
 spring:
   datasource:
