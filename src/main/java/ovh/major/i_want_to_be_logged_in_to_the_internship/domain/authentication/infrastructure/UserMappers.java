@@ -10,6 +10,7 @@ class UserMappers {
         return UserDto.builder()
                 .username(userEntity.getUsername())
                 .password(userEntity.getPassword())
+                .email(userEntity.getEmail())
                 .build();
     }
 
