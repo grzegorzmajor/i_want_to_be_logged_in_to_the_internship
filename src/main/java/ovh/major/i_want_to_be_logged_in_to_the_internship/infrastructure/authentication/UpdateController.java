@@ -31,8 +31,8 @@ public class UpdateController {
             changePassword(oldUsername, updateRequestDto, updatedUserDetails); }
 
         if (updateRequestDto.username() != null) {
-            actualUsername = changeUsernameIfRequired(oldUsername, updateRequestDto, updatedUserDetails)
-                    ? updateRequestDto.username() : oldUsername; }
+            actualUsername = changeUsernameIfRequired(oldUsername, updateRequestDto, updatedUserDetails) ?
+                    updateRequestDto.username() : oldUsername; }
 
         if (updateRequestDto.email() != null) {
             sendEmailConfirmationEmail(actualUsername, updateRequestDto); }
@@ -41,7 +41,8 @@ public class UpdateController {
             emailSenderFacade.sendSecurityInformationEmail(
                 UserForEmailDto.builder()
                     .username(actualUsername)
-                    .email(authorizationFacade.findEmailByUsername(actualUsername))
+                    .email(updateRequestDto.email() == null ?
+                            authorizationFacade.findEmailByUsername(actualUsername) : updateRequestDto.email())
                     .build(),
                 updatedUserDetails.toString());
         }
