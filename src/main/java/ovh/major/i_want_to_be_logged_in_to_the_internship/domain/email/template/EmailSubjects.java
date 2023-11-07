@@ -6,7 +6,7 @@ enum EmailSubjects {
     SECURITY_INFORMATION("Security information from The Internship Application.");
 
 
-    private String s;
+    private final String s;
 
     EmailSubjects(String s) {
         this.s = s;

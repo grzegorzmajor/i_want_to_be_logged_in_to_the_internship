@@ -14,7 +14,7 @@ import org.springframework.context.annotation.PropertySource;
 @Setter
 @EnableConfigurationProperties(value = {JwtConfigurationProperties.class})
 class JwtConfigurationProperties {
-        String secret;
-        long expirationSeconds;
-        String issuer;
+    String secret;
+    long expirationSeconds;
+    String issuer;
 }

@@ -11,7 +11,7 @@ enum EmailMessages {
     LINK_URL("http://localhost:8888/");
 
 
-    private String s;
+    private final String s;
 
     EmailMessages(String s) {
         this.s = s;

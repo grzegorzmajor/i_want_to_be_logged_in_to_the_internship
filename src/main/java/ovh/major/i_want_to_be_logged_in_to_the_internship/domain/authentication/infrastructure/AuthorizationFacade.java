@@ -26,6 +26,7 @@ public class AuthorizationFacade {
     public UserDto findByUsername(String username) {
         return UserMappers.fromUserEntityToUserDto(loginService.findByUsername(username));
     }
+
     public String findEmailByUsername(String username) {
         return loginService.findEmailByUsername(username);
     }
@@ -41,12 +42,14 @@ public class AuthorizationFacade {
 
     @Transactional
     public void updateUsernameByOldUsername(String oldUsername, String newUsername) {
-        updateService.updateUsernameByOldUsername(oldUsername,newUsername);
+        updateService.updateUsernameByOldUsername(oldUsername, newUsername);
     }
+
     @Transactional
     public void updateEmailByUsername(String username, String newEmail) {
-        updateService.updateEmailByUsername(username,newEmail);
+        updateService.updateEmailByUsername(username, newEmail);
     }
+
     @Transactional
     public void updatePasswordByUsername(String username, String password) {
         updateService.updatePasswordByUsername(username, password);

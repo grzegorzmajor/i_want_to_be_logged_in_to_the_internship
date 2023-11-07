@@ -28,23 +28,26 @@ public class UpdateController {
         throwIfThereIsNoPermissionToChangeUserData(oldUsername, token);
 
         if (updateRequestDto.password() != null) {
-            changePassword(oldUsername, updateRequestDto, updatedUserDetails); }
+            changePassword(oldUsername, updateRequestDto, updatedUserDetails);
+        }
 
         if (updateRequestDto.username() != null) {
             actualUsername = changeUsernameIfRequired(oldUsername, updateRequestDto, updatedUserDetails) ?
-                    updateRequestDto.username() : oldUsername; }
+                    updateRequestDto.username() : oldUsername;
+        }
 
         if (updateRequestDto.email() != null) {
-            sendEmailConfirmationEmail(actualUsername, updateRequestDto); }
+            sendEmailConfirmationEmail(actualUsername, updateRequestDto);
+        }
 
-        if (updatedUserDetails.length() >0) {
+        if (updatedUserDetails.length() > 0) {
             emailSenderFacade.sendSecurityInformationEmail(
-                UserForEmailDto.builder()
-                    .username(actualUsername)
-                    .email(updateRequestDto.email() == null ?
-                            authorizationFacade.findEmailByUsername(actualUsername) : updateRequestDto.email())
-                    .build(),
-                updatedUserDetails.toString());
+                    UserForEmailDto.builder()
+                            .username(actualUsername)
+                            .email(updateRequestDto.email() == null ?
+                                    authorizationFacade.findEmailByUsername(actualUsername) : updateRequestDto.email())
+                            .build(),
+                    updatedUserDetails.toString());
         }
     }
 

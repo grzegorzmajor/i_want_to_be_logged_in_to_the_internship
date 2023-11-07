@@ -26,12 +26,12 @@ class UpdateService {
         if (repository.existsUserEntityByEmail(newEmail)) {
             throw new UserDetailNotAcceptedException("email");
         }
-        repository.updateEmailByUsername(username,newEmail);
+        repository.updateEmailByUsername(username, newEmail);
     }
 
     void updatePasswordByUsername(String username, String password) {
         throwWhenUsernameNoExistInDb(username);
-        repository.updatePasswordByUsername(username,password);
+        repository.updatePasswordByUsername(username, password);
     }
 
     private void throwWhenUsernameNoExistInDb(String oldUsername) {
@@ -39,8 +39,6 @@ class UpdateService {
             throw new UsernameNotFoundException(USER_NOT_FOUND.toString());
         }
     }
-
-
 
 
 }

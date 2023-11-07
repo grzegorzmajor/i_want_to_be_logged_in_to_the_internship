@@ -11,4 +11,5 @@ public record UserForEmailDto(
 
         @NotBlank(message = "email must be not blank!")
         String email
-) { }
+) {
+}

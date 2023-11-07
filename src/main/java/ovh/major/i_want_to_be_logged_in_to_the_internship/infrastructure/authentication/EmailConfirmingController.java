@@ -32,7 +32,7 @@ class EmailConfirmingController {
                 authorizationFacade.confirmEmail(username);
                 txt = "Your email was confirmed!";
             } else {
-                authorizationFacade.updateEmailByUsername(username,userForEmailDto.email());
+                authorizationFacade.updateEmailByUsername(username, userForEmailDto.email());
                 authorizationFacade.confirmEmail(username);
                 txt = "Your email was changed and confirmed!";
             }

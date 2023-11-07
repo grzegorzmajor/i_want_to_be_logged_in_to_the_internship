@@ -13,7 +13,7 @@ public class UserMappersTest {
     @Test
     void shouldHaveSameDataWhenMapFromUserEntityToUserDtoTest() {
         //given
-        UserEntity source =  UserEntity.builder()
+        UserEntity source = UserEntity.builder()
                 .email("user@svr.pl")
                 .password("pass")
                 .username("name")
@@ -25,15 +25,15 @@ public class UserMappersTest {
 
         //then
         assertAll(
-                () -> assertEquals(source.getUsername(),result.username()),
-                () -> assertEquals(source.getPassword(),result.password())
+                () -> assertEquals(source.getUsername(), result.username()),
+                () -> assertEquals(source.getPassword(), result.password())
         );
     }
 
     @Test
     void shouldHaveSameDataWhenMapFromUserRegisterRequestDtoToUserEntityTest() {
         //given
-        UserRegisterRequestDto source =  UserRegisterRequestDto.builder()
+        UserRegisterRequestDto source = UserRegisterRequestDto.builder()
                 .email("user@svr.pl")
                 .password("pass")
                 .username("name")
@@ -43,16 +43,16 @@ public class UserMappersTest {
 
         //then
         assertAll(
-                () -> assertEquals(source.email(),result.getEmail()),
-                () -> assertEquals(source.password(),result.getPassword()),
-                () -> assertEquals(source.username(),result.getUsername())
+                () -> assertEquals(source.email(), result.getEmail()),
+                () -> assertEquals(source.password(), result.getPassword()),
+                () -> assertEquals(source.username(), result.getUsername())
         );
     }
 
     @Test
     void shouldHaveSameDataWhenMapFromUserEntityToRegistrationResultDtoTest() {
         //given
-        UserEntity source =  UserEntity.builder()
+        UserEntity source = UserEntity.builder()
                 .email("user@svr.pl")
                 .password("pass")
                 .username("name")
@@ -64,9 +64,9 @@ public class UserMappersTest {
 
         //then
         assertAll(
-                () -> assertEquals(source.getId(),result.id()),
-                () -> assertEquals(source.getUsername(),result.username()),
-                () -> assertEquals(source.getEmail(),result.email()),
+                () -> assertEquals(source.getId(), result.id()),
+                () -> assertEquals(source.getUsername(), result.username()),
+                () -> assertEquals(source.getEmail(), result.email()),
                 () -> assertTrue(result.registered())
         );
     }
@@ -74,7 +74,7 @@ public class UserMappersTest {
     @Test
     void shouldHaveSameDataWhenMapFromUserEntityToUserForEmailDtoTest() {
         //given
-        UserEntity source =  UserEntity.builder()
+        UserEntity source = UserEntity.builder()
                 .email("user@svr.pl")
                 .password("pass")
                 .username("name")
@@ -86,8 +86,8 @@ public class UserMappersTest {
 
         //then
         assertAll(
-                () -> assertEquals(source.getUsername(),result.username()),
-                () -> assertEquals(source.getEmail(),result.email())
+                () -> assertEquals(source.getUsername(), result.username()),
+                () -> assertEquals(source.getEmail(), result.email())
         );
     }
 }

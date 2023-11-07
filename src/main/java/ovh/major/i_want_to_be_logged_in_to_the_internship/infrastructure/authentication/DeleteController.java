@@ -17,7 +17,7 @@ class DeleteController {
 
     @DeleteMapping("/{username}")
     public void deleteUser(@PathVariable("username") String username, @RequestHeader("Authorization") String token) {
-        if (!jwtAuthTokenFilter.isContainUsername(token,username)) {
+        if (!jwtAuthTokenFilter.isContainUsername(token, username)) {
             throw new NoPermissionException();
         }
         authorizationFacade.deleteUser(username);

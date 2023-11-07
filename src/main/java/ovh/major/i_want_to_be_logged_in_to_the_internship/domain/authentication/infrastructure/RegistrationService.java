@@ -20,9 +20,9 @@ class RegistrationService {
     @Transactional
     public RegistrationResultDto registerUser(UserRegisterRequestDto userRegisterRequestDto) throws JsonProcessingException {
         UserEntity userEntity = UserMappers.fromUserRegisterRequestDtoToUserEntity(userRegisterRequestDto);
-        if ( userRepository.existsUserEntityByUsernameOrEmail(userEntity.getUsername(), userEntity.getEmail()) ) {
+        if (userRepository.existsUserEntityByUsernameOrEmail(userEntity.getUsername(), userEntity.getEmail())) {
             throw new DuplicateCredentialsException();
-        };
+        }
         UserEntity savedResult = userRepository.save(userEntity);
         UserForEmailDto userForEmailDto = UserMappers.fromUserEntityToUserForEmailDto(savedResult);
         emailSenderFacade.sendConfirmationEmail(userForEmailDto);

@@ -4,8 +4,9 @@ import lombok.Builder;
 
 @Builder
 public record RegistrationResultDto(
-    Integer id,
-    String username,
-    String email,
-    boolean  registered
-) {}
+        Integer id,
+        String username,
+        String email,
+        boolean registered
+) {
+}

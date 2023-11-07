@@ -6,7 +6,7 @@ public enum ExceptionMessages {
     EMAIL_NOT_CONFIRMED("Email is not confirmed!"),
     BAD_CREDENTIALS("Bad Credentials");
 
-    private String s;
+    private final String s;
 
     ExceptionMessages(String s) {
         this.s = s;

@@ -45,6 +45,7 @@ class ControllerErrorHandler {
     public ErrorResponse handleEmailNotConfirmed() {
         return new ErrorResponse(EMAIL_NOT_CONFIRMED.toString(), HttpStatus.UNAUTHORIZED);
     }
+
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(UsernameNotFoundException.class)
     @ResponseBody

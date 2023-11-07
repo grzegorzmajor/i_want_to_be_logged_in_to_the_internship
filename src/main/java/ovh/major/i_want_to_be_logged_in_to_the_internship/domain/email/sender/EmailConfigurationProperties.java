@@ -12,8 +12,8 @@ import org.springframework.context.annotation.PropertySource;
 @Getter
 @Setter
 class EmailConfigurationProperties {
-        String host;
-        int port;
-        String username;
-        String password;
+    String host;
+    int port;
+    String username;
+    String password;
 }

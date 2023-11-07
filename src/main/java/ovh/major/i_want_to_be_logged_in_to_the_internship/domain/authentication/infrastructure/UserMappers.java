@@ -22,6 +22,7 @@ class UserMappers {
                 .emailAuthenticated(false)
                 .build();
     }
+
     public static RegistrationResultDto fromUserEntityToRegistrationResultDto(UserEntity userEntity) {
         return RegistrationResultDto.builder()
                 .id(userEntity.getId())

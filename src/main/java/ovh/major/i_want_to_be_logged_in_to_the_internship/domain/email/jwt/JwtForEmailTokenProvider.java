@@ -32,7 +32,7 @@ public class JwtForEmailTokenProvider {
         Instant expiresAt = now.plus(Duration.ofSeconds(properties.expirationSeconds));
         String issuer = properties.getIssuer();
         ObjectMapper objectMapper = new ObjectMapper();
-        String json =  objectMapper.writeValueAsString(userForEmailDto);
+        String json = objectMapper.writeValueAsString(userForEmailDto);
 
         return JWT.create()
                 .withSubject(json)
@@ -52,7 +52,6 @@ public class JwtForEmailTokenProvider {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(json, UserForEmailDto.class);
     }
-
 
 
 }

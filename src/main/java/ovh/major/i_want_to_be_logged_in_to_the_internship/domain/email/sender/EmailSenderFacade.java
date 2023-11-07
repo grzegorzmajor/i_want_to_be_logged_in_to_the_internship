@@ -25,7 +25,7 @@ public class EmailSenderFacade {
     }
 
     public void sendSecurityInformationEmail(UserForEmailDto user, String updated) {
-        Email email = EmailComposerFacade.securityInformationEmail(updated,user.username());
+        Email email = EmailComposerFacade.securityInformationEmail(updated, user.username());
         emailSenderService.sendEmail(
                 user.email(),
                 email.subject(),

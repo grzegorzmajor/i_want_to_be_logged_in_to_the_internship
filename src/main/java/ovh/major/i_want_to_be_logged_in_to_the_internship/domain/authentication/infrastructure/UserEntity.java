@@ -32,4 +32,4 @@ class UserEntity {
 
     private boolean emailAuthenticated;
 
- }
+}
