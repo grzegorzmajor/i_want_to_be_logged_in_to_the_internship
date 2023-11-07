@@ -26,9 +26,16 @@ class EmailConfirmingController {
         String txt = "";
         try {
             UserForEmailDto userForEmailDto = tokenProvider.getDtoFromToken(token);
+            String inDbUserEmail = authorizationFacade.findEmailByUsername(userForEmailDto.username());
             String username = userForEmailDto.username();
-            authorizationFacade.confirmEmail(username);
-            txt = "Your email was confirmed!";
+            if (inDbUserEmail.equals(userForEmailDto.email())) {
+                authorizationFacade.confirmEmail(username);
+                txt = "Your email was confirmed!";
+            } else {
+                authorizationFacade.updateEmailByUsername(username,userForEmailDto.email());
+                authorizationFacade.confirmEmail(username);
+                txt = "Your email was changed and confirmed!";
+            }
         } catch (TokenExpiredException e) {
             txt = "I`m Sorry, your late! The link was expired!";
         } catch (JsonProcessingException e) {
