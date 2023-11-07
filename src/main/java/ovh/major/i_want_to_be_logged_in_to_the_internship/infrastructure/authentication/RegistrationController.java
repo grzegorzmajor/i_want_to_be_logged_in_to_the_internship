@@ -1,5 +1,6 @@
 package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authentication;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ class RegistrationController {
     private final AuthorizationFacade authorizationFacade;
 
     @PostMapping
-    public ResponseEntity<RegistrationResultDto> registerUser(@RequestBody UserRegisterRequestDto userRegisterRequestDto) {
+    public ResponseEntity<RegistrationResultDto> registerUser(@RequestBody UserRegisterRequestDto userRegisterRequestDto) throws JsonProcessingException {
         String encodedPassword = bCryptPasswordEncoder.encode(userRegisterRequestDto.password());
         RegistrationResultDto registrationResultDto = authorizationFacade.registerUser(
                 UserRegisterRequestDto.builder()

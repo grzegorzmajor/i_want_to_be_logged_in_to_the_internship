@@ -1,5 +1,6 @@
 package ovh.major.i_want_to_be_logged_in_to_the_internship.domain.email.sender;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserForEmailDto;
@@ -14,8 +15,8 @@ public class EmailSenderFacade {
     EmailSenderService emailSenderService;
     JwtForEmailTokenProvider tokenProvider;
 
-    public void sendConfirmationEmail(UserForEmailDto user) {
-        Email email = EmailComposerFacade.confirmationEmail("confirm/" + tokenProvider.generateToken(user.username()), user.username());
+    public void sendConfirmationEmail(UserForEmailDto user) throws JsonProcessingException {
+        Email email = EmailComposerFacade.confirmationEmail("confirm/" + tokenProvider.generateToken(user), user.username());
         emailSenderService.sendEmail(
                 user.email(),
                 email.subject(),

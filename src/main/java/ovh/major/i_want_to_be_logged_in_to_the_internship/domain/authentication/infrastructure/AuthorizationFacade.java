@@ -1,6 +1,7 @@
 package ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +27,7 @@ public class AuthorizationFacade {
         return UserMappers.fromUserEntityToUserDto(loginService.findByUsername(username));
     }
 
-    public RegistrationResultDto registerUser(UserRegisterRequestDto userRegisterRequestDto) {
+    public RegistrationResultDto registerUser(UserRegisterRequestDto userRegisterRequestDto) throws JsonProcessingException {
         return registrationService.registerUser(userRegisterRequestDto);
     }
 
