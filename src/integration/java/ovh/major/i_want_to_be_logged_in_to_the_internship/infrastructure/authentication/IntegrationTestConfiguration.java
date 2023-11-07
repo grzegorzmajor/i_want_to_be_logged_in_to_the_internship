@@ -16,7 +16,7 @@ import static io.restassured.config.EncoderConfig.encoderConfig;
 @SpringBootTest(classes = IWantToBeLoggedInToTheInternshipApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Testcontainers
-class IntegrationTestConfiguration {
+public class IntegrationTestConfiguration {
 
     private static final Integer PORT_SMTP = 1025;
     private static final Integer PORT_HTTP = 8025;
