@@ -27,17 +27,12 @@ public class UpdateController {
         if (!jwtAuthTokenFilter.isContainUsername(token,oldUsername)) {
             throw new NoPermissionException();
         }
-        if (updateRequestDto.username() != null) {
-            authorizationFacade.updateUsernameByOldUsername(oldUsername, updateRequestDto.username());
-            updatedUserDetails.append("username");
-        }
+
         if (updateRequestDto.email() != null) {
             authorizationFacade.updateEmailByUsername(oldUsername, updateRequestDto.email());
-            if (updatedUserDetails.length()>0) {
-                updatedUserDetails.append(", ");
-            }
             updatedUserDetails.append("email");
         }
+
         if (updateRequestDto.password() != null) {
             String encodedPassword = bCryptPasswordEncoder.encode(updateRequestDto.password());
             authorizationFacade.updatePasswordByUsername(oldUsername, encodedPassword);
@@ -46,6 +41,16 @@ public class UpdateController {
             }
             updatedUserDetails.append("password");
         }
+
+        if (updateRequestDto.username() != null && !oldUsername.equals(updateRequestDto.username())) {
+            authorizationFacade.updateUsernameByOldUsername(oldUsername, updateRequestDto.username());
+            if (updatedUserDetails.length()>0) {
+                updatedUserDetails.append(", ");
+            }
+            updatedUserDetails.append("username");
+
+        }
+
         emailSenderFacade.sendSecurityInformationEmail(
                 authorizationFacade.findUserById(id),
                 updatedUserDetails.toString());
