@@ -23,6 +23,13 @@ class LoginService {
         return userEntity;
     }
 
+    public String findEmailByUsername(String username) {
+        UserEntity userEntity = repository
+                .findByUsername(username)
+                .orElseThrow(() -> new BadCredentialsException(USER_NOT_FOUND.toString()));
+        return userEntity.getEmail();
+    }
+
     public UserEntity findById(Integer id) {
         return repository
                 .findById(id)

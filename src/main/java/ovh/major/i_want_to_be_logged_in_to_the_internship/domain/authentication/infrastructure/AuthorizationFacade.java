@@ -26,6 +26,9 @@ public class AuthorizationFacade {
     public UserDto findByUsername(String username) {
         return UserMappers.fromUserEntityToUserDto(loginService.findByUsername(username));
     }
+    public String findEmailByUsername(String username) {
+        return loginService.findEmailByUsername(username);
+    }
 
     public RegistrationResultDto registerUser(UserRegisterRequestDto userRegisterRequestDto) throws JsonProcessingException {
         return registrationService.registerUser(userRegisterRequestDto);
