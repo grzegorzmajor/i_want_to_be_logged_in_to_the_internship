@@ -48,22 +48,25 @@ public class IntegrationTestConfiguration {
         int mailhogSmtpPort = mailhog.getMappedPort(1025);
         System.setProperty("spring.mail.host", mailhogHost);
         System.setProperty("spring.mail.port", String.valueOf(mailhogSmtpPort));
-        System.setProperty("spring.mail.user","john.doe");
-        System.setProperty("spring.mail.pass","s3cr3t");
+        System.setProperty("spring.mail.user", "john.doe");
+        System.setProperty("spring.mail.pass", "s3cr3t");
 
         ///other properties
-        System.setProperty("jwt.auth.expirationSeconds","200");
-        System.setProperty("jwt.auth.secret","secret");
-        System.setProperty("jwt.email.expirationSeconds","200");
-        System.setProperty("jwt.email.secret","secret");
+        System.setProperty("jwt.auth.expirationSeconds", "200");
+        System.setProperty("jwt.auth.secret", "secret");
+        System.setProperty("jwt.email.expirationSeconds", "200");
+        System.setProperty("jwt.email.secret", "secret");
 
     }
+
     String mailhogHost() {
         return mailhog.getHost();
     }
+
     int mailhogSmtpPort() {
         return mailhog.getMappedPort(PORT_SMTP);
     }
+
     int mailhogHttpPort() {
         return mailhog.getMappedPort(PORT_HTTP);
     }

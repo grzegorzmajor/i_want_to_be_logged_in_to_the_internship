@@ -17,15 +17,17 @@ public enum Examples {
             "\"password\":\"cutepassword\"" +
             "}"),
     UPDATE_DETAILS("{\n" +
-             "\"username\":\"someuser\",\n" +
-             "\"password\":\"cutepassword\",\n" +
-             "\"email\":\"handsomejohn@do.com\"" +
-             "}");
+            "\"username\":\"someuser\",\n" +
+            "\"password\":\"cutepassword\",\n" +
+            "\"email\":\"handsomejohn@do.com\"" +
+            "}");
 
     private final String value;
+
     Examples(String value) {
         this.value = value;
     }
+
     public String toString() {
         return value;
     }
