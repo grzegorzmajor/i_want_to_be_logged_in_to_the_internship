@@ -12,8 +12,11 @@ public enum Examples {
             "\"username\":\"user\",\n" +
             "\"password\":\"pass\"" +
             "}"),
-
-    UPDATE_CREDENTIALS("{\n" +
+    UPDATED_CREDENTIALS("{\n" +
+            "\"username\":\"someuser\",\n" +
+            "\"password\":\"cutepassword\"" +
+            "}"),
+    UPDATE_DETAILS("{\n" +
              "\"username\":\"someuser\",\n" +
              "\"password\":\"cutepassword\",\n" +
              "\"email\":\"handsomejohn@do.com\"" +
