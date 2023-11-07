@@ -3,7 +3,7 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.exceptions.DuplicateCredentialsException;
+import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.exceptions.UserDetailNotAcceptedException;
 
 import static ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.exceptions.ExceptionMessages.USER_NOT_FOUND;
 
@@ -16,7 +16,7 @@ class UpdateService {
     void updateUsernameByOldUsername(String oldUsername, String newUsername) {
         throwWhenUsernameNoExistInDb(oldUsername);
         if (repository.existsUserEntityByUsername(newUsername)) {
-            throw new DuplicateCredentialsException();
+            throw new UserDetailNotAcceptedException("username");
         }
         repository.updateUsernameByUsername(oldUsername, newUsername);
     }
@@ -24,7 +24,7 @@ class UpdateService {
     void updateEmailByUsername(String username, String newEmail) {
         throwWhenUsernameNoExistInDb(username);
         if (repository.existsUserEntityByEmail(newEmail)) {
-            throw new DuplicateCredentialsException();
+            throw new UserDetailNotAcceptedException("email");
         }
         repository.updateEmailByUsername(username,newEmail);
     }

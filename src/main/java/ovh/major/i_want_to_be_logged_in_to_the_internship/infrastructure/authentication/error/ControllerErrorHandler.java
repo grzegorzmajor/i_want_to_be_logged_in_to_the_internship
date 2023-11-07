@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.exceptions.DuplicateCredentialsException;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.exceptions.EmailNotConfirmedException;
+import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.exceptions.UserDetailNotAcceptedException;
 
 import static ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.infrastructure.exceptions.ExceptionMessages.*;
 import static ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authentication.error.ExceptionMessages.NO_PERMISSION;
@@ -27,8 +28,15 @@ class ControllerErrorHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(DuplicateCredentialsException.class)
     @ResponseBody
-    public ErrorResponse handleDuplicateCredentails() {
+    public ErrorResponse handleDuplicateCredentials() {
         return new ErrorResponse(USER_EXISTS.toString(), HttpStatus.CONFLICT);
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(UserDetailNotAcceptedException.class)
+    @ResponseBody
+    public ErrorResponse handleUserDetailNotAccepted(Exception e) {
+        return new ErrorResponse(e.getMessage(), HttpStatus.CONFLICT);
     }
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
