@@ -1,8 +1,7 @@
 package ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
-
-import javax.validation.constraints.NotBlank;
 
 @Builder
 public record UserRegisterRequestDto(

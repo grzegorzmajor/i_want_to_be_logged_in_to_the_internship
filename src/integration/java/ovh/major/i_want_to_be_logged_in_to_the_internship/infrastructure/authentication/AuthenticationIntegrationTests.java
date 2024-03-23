@@ -1,4 +1,4 @@
-package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authentication;
+package java.ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authentication;
 
 import io.restassured.http.ContentType;
 import org.jetbrains.annotations.NotNull;
@@ -6,6 +6,8 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authentication.Examples;
+import ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.authentication.IntegrationTestConfiguration;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;

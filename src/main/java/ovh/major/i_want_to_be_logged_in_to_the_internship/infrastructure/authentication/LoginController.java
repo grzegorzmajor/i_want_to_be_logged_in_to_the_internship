@@ -10,7 +10,7 @@ import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.
 import ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication.dto.UserLoginRequestDto;
 import ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.jwt.JwtAuthenticator;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @RestController
 @AllArgsConstructor

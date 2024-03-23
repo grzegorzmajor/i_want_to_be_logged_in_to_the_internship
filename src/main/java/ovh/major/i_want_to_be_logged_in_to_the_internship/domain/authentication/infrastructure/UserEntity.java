@@ -3,8 +3,8 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.domain.authentication
 import jakarta.persistence.*;
 import lombok.*;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;;
 
 @Entity
 @Builder

@@ -59,7 +59,7 @@ public class IntegrationTestConfiguration {
 
     }
 
-    String mailhogHost() {
+    protected String mailhogHost() {
         return mailhog.getHost();
     }
 
@@ -67,7 +67,7 @@ public class IntegrationTestConfiguration {
         return mailhog.getMappedPort(PORT_SMTP);
     }
 
-    int mailhogHttpPort() {
+    protected int mailhogHttpPort() {
         return mailhog.getMappedPort(PORT_HTTP);
     }
 

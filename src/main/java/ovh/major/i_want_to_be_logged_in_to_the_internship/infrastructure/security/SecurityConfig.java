@@ -3,6 +3,7 @@ package ovh.major.i_want_to_be_logged_in_to_the_internship.infrastructure.securi
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
@@ -41,6 +42,7 @@ class SecurityConfig {
     }
 
     @Bean
+    @Order(2)
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity.authorizeHttpRequests(request -> request
@@ -60,6 +62,28 @@ class SecurityConfig {
         httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         httpSecurity.exceptionHandling(Customizer.withDefaults());
         httpSecurity.addFilterBefore(jwtAuthTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        return httpSecurity.build();
+    }
+
+    @Bean
+    @Order(1)
+    public SecurityFilterChain openSecurityChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(request -> request
+                    .requestMatchers(
+                        "/v3/**",
+                        "/v3/api-docs",
+                        "/v3/api-docs/**",
+                        "/swagger-ui/index.html",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/api/auth/**",
+                        "/webjars/**" ).permitAll())
+                .headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(Customizer.withDefaults());
         return httpSecurity.build();
     }
 
